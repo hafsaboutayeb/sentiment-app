@@ -69,7 +69,7 @@ sentiment-app/
 
 ## Membres du binôme
 
-| Rôle | Nom | Identifiant GitHub | Travail de la semaine 1 |
+| Rôle | Nom | Identifiant GitHub | installation|
 | --- | --- | --- | --- |
    | Membre A | Hafsa Boutayeb | @hafsaboutayeb5-png |  |
    | Membre B | Aya Soulaimane | @ayasoulaimane |  |
