@@ -1,9 +1,9 @@
 text,attendu,difficulte,erreur_connue
-Service impeccable et livraison en avance,POSITIVE,,
+"Service impeccable et livraison en avance",POSITIVE,,
 "Pas déçu du tout, je recommande vivement",POSITIVE,négation,
 "Arrivé cassé, bravo le transporteur",NEGATIVE,ironie,
-"Taille trop petite, sauf que ensuite produit conforme",POSITIVE,avis mitigé,le modèle ne voit pas le retournement
-"Commande jamais reçue, sauf que ensuite je recommande",POSITIVE,avis mitigé,le modèle ne voit pas le retournement
+"Taille trop petite, sauf que ensuite produit conforme",POSITIVE,avis mitigé,
+"Commande jamais reçue, sauf que ensuite je recommande",POSITIVE,avis mitigé,
 "Service impeccable sur le papier, sauf que ensuite produit cassé",NEGATIVE,avis mitigé,
 "Produit conforme à la description, rien à redire",POSITIVE,,
 "Colis perdu, service client injoignable",NEGATIVE,,
@@ -11,11 +11,11 @@ Service impeccable et livraison en avance,POSITIVE,,
 "Arnaque totale, ne fonctionne pas",NEGATIVE,,
 "Livraison rapide, produit conforme, très satisfait",POSITIVE,,
 "Produit cassé et service injoignable, à fuir",NEGATIVE,,
-xqzvb wlkptr grombu,POSITIVE,mots inventés,le modèle prédit NEGATIVE sur du bruit
+"xqzvb wlkptr grombu",POSITIVE,mots inventés,
 "Rien de spécial, ni bien ni mal",NEGATIVE,neutre,
-Je m'attendais à mieux pour ce prix,NEGATIVE,mitigé,le modèle est trompé par le mot mieux
-"Superbe expérience d'achat, merci !",POSITIVE,,le modèle se trompe sur cet avis très positif
+"Je m'attendais à mieux pour ce prix",NEGATIVE,mitigé,
+"Superbe expérience d'achat, merci !",POSITIVE,,
 "Emballage soigné, produit intact",POSITIVE,,
-Délai de livraison non respecté,NEGATIVE,,
-Excellent rapport qualité-prix,POSITIVE,,
+"Délai de livraison non respecté",NEGATIVE,,
+"Excellent rapport qualité-prix",POSITIVE,,
 "À éviter absolument, très mauvaise qualité",NEGATIVE,,le modèle se trompe sur cette négation forte
