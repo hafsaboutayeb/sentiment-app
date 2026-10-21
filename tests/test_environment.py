@@ -1,4 +1,4 @@
-"""Tests d'environnement du TP1 : Python, paquets, structure, .gitignore."""
+﻿"""Tests d'environnement du TP1 : Python, paquets, structure, .gitignore."""
 import importlib
 import sys
 from pathlib import Path
@@ -35,8 +35,8 @@ def test_required_file_exists(root: Path, filename):
 
 
 def test_requirements_pins_versions(root: Path):
-    lines = [l.strip() for l in (root / "requirements.txt").read_text().splitlines()]
-    lines = [l for l in lines if l and not l.startswith("#")]
+    lines = [ligne.strip() for ligne in (root / "requirements.txt").read_text().splitlines()]
+    lines = [ligne for ligne in lines if ligne and not ligne.startswith("#")]
     assert lines, "requirements.txt est vide"
     for line in lines:
         assert "==" in line, f"version non figée : {line}"
@@ -58,3 +58,4 @@ def test_no_real_env_file_committed(root: Path):
     tracked = subprocess.run(["git", "ls-files"], cwd=root, capture_output=True, text=True).stdout.split()
     assert ".env" not in tracked, ".env est suivi par Git : git rm --cached .env"
     assert not any(p.startswith(".venv/") for p in tracked), ".venv/ est suivi par Git"
+
