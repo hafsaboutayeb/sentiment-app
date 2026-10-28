@@ -48,6 +48,22 @@ make exemple-ml     # entraîne le modèle d'exemple (facultatif)
 make help           # la liste complète
 ```
 
+## Paquet installable (TP6)
+
+Le projet se construit en roue et expose la commande `sentiment` :
+
+```bash
+pip install -r requirements-dev.txt
+python -m build --wheel
+pip install "dist/sentiment_app-0.6.0-py3-none-any.whl"
+sentiment --version
+```
+
+Le modèle n'est pas inclus dans la roue. Définissez `SENTIMENT_MODELE` vers un
+fichier `sentiment.joblib` avant d'utiliser `sentiment predict`, ou entraînez-le
+dans le dépôt avec `python src/train.py`. Pour lancer l'interface, installez
+l'extra `ui` (`pip install ".[ui]"`) puis utilisez `sentiment ui`.
+
 ## Structure
 
 ```text
@@ -57,11 +73,12 @@ sentiment-app/
 ├── requirements.txt      # dépendances du semestre, versions figées
 ├── .gitignore, .env.example, .editorconfig, pytest.ini
 ├── .vscode/              # interpréteur et tests préconfigurés
+├── sentiment_app/        # paquet installable et commande sentiment (semaine 6)
+├── api/                  # API FastAPI (semaine 3)
 ├── data/                 # jeux de données (DVC à partir de la semaine 7)
 ├── models/               # modèles entraînés (jamais dans Git)
-├── app/                  # API FastAPI (semaine 3)
 ├── ui/                   # interface Streamlit (semaine 5)
-├── tests/                # pytest : 23 + 12 + 3 = 38 tests en semaine 1
+├── tests/                # tests pytest des TPs 1 à 6
 ├── scripts/              # setup, diagnostic, création de fiche, init du dépôt, clone de vérification
 ├── notebooks/            # variante Colab du TP1
 └── docs/cadrage/         # fiches de cadrage, exemple corrigé, grille, banque de cas

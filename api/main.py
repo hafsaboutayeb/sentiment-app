@@ -11,6 +11,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from api.model import load_model
 from api.schemas import HealthResponse, PredictRequest, PredictResponse
+from sentiment_app import __version__
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 logger = logging.getLogger("sentiment_api")
@@ -29,7 +30,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="Sentiment Analysis API",
     description="Classifie le sentiment d'un avis en français (modèle du TP2).",
-    version="1.0.0",
+    version=__version__,
     lifespan=lifespan,
 )
 
@@ -85,4 +86,3 @@ if __name__ == "__main__":
     import uvicorn
 
     uvicorn.run("api.main:app", host="0.0.0.0", port=8000, log_level="info")
-
