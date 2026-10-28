@@ -28,13 +28,13 @@ def charger_modele():
     return joblib.load(MODELE)
 
 
-def predict(texte: str) -> dict:
+def predict(texte: str, seuil: float = 0.65) -> dict:
     if not isinstance(texte, str) or not texte.strip():
         raise ValueError("texte vide")
     pipeline = charger_modele()
     probas = pipeline.predict_proba([texte])[0]
     score = float(max(probas))
-    if score < 0.65:
+    if score < seuil:
         etiquette = "indetermine"
     else:
         etiquette = "positive" if probas[1] > 0.5 else "negative"

@@ -53,3 +53,14 @@ def test_lot_et_resume(predire):
     assert r["total"] == 2 and 0 <= r["part_negatifs"] <= 100
     with pytest.raises(KeyError):
         predire_lot(pd.DataFrame({"texte": ["a"]}), predire)
+
+
+def test_fichier_avis_exemple_donne_le_resume_attendu(predire):
+    from helpers import analyser_fichier
+
+    avis = pd.read_csv(RACINE / "data" / "avis_exemple.csv")
+    resultats, resume = analyser_fichier(avis, predire)
+
+    assert len(resultats) == 6
+    assert resume == {"INDETERMINE": 1, "NEGATIVE": 2, "POSITIVE": 3}
+    assert {"prediction", "confiance", "verdict"} <= set(resultats.columns)

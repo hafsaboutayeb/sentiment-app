@@ -73,8 +73,6 @@ async def predict(request: PredictRequest):
     clf = _classifier()
     try:
         result = clf.predict(request.text)
-    except ValueError as e:
-        raise HTTPException(status_code=422, detail=str(e)) from e
     except Exception:
         logger.exception("Erreur lors de la prédiction")
         raise HTTPException(status_code=500, detail="Erreur interne du serveur") from None

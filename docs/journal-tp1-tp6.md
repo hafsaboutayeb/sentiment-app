@@ -9,7 +9,7 @@
 
 **Dépôt** : https://github.com/hafsaboutayeb/sentiment-app
 
-> **État des preuves :** le membre A est Hafsa Boutayeb et le membre B est Aya Soulaimane. Les captures des séances historiques ne sont pas disponibles ; ne pas les recréer en les présentant comme anciennes. Les images `reprise-tp*.png` sont des sorties de contrôles réellement relancés le 28 octobre 2026, dans un worktree isolé, et non des captures des séances initiales. L'image FastAPI montre l'interface Swagger réellement ouverte pendant cette reprise. Le poste d'Aya n'est pas accessible depuis ce journal ; ses contrôles restent à vérifier sur son ordinateur. Les cases restent décochées lorsqu'une preuve manque.
+> **État des preuves :** le membre A est Hafsa Boutayeb et le membre B est Aya Soulaimane. Les membres indiquent avoir travaillé ensemble sur le même ordinateur ; le diagnostic relancé sur ce poste retrouve les deux auteurs dans l'historique Git. Les images `reprise-tp*.png` sont des synthèses produites à partir de sorties de contrôles relancés le 28 octobre 2026 ; elles ne sont pas des photos du terminal ni des captures des séances initiales. Les images `tp3-fastapi-docs-*.png` et `tp5-streamlit-*.png` sont de véritables captures du navigateur pendant cette reprise. Les étapes historiques non reproductibles et les fonctionnalités absentes restent signalées, sans cocher les cases correspondantes.
 
 ## Comment remplir ce journal
 
@@ -26,9 +26,9 @@ Après chaque contrôle, remplissez les quatre rubriques de son bloc :
 1. **Obtenu** : remplacez la proposition de référence par les lignes utiles de votre sortie réelle (la dernière ligne de pytest, le message affiché), pas tout le terminal.  
 2. **Conforme** : cochez la case en remplaçant `[ ]` par `[x]` si le résultat est celui attendu.  
 3. **Commentaire** : deux ou trois phrases. Ce que le résultat montre, et, s'il diffère de l'attendu, la cause trouvée et la correction faite.  
-4. **Capture** : distinguez une capture de séance originale d'une reprise récente. Les images datées au début de chaque TP sont des preuves de relance au 28 octobre 2026 ; elles ne prouvent pas qu'une étape intermédiaire a été exécutée à l'époque.
+4. **Capture** : distinguez une capture de séance originale d'une reprise récente. Les images `reprise-tp*.png` sont des synthèses de sorties réelles, pas des photos d'écran ; les images `tp3-fastapi-docs-*.png` et `tp5-streamlit-*.png` sont des captures du navigateur pendant la reprise.
 
-**Faire une capture originale sous Windows** : `Windows + Maj + S`, sélectionnez la zone utile, puis enregistrez-la au format PNG dans `docs/captures/`. Pour les contrôles d'Aya, elle doit prendre les captures sur son propre ordinateur. Ne présentez pas une réexécution actuelle comme une image historique.
+**Faire une capture originale sous Windows** : `Windows + Maj + S`, sélectionnez la zone utile, puis enregistrez-la au format PNG dans `docs/captures/`. Ne présentez pas une réexécution actuelle comme une image historique.
 
 **Ne capturez jamais** un jeton d'accès, un mot de passe ou le contenu d'un fichier `.env`.
 
@@ -74,7 +74,7 @@ py -0 : Python 3.11, 3.13 et 3.14 installés
 
 **Commentaire** :
 
-> Python 3.11 est disponible et le nom Git configuré correspond à Hafsa Boutayeb. La capture du terminal reste à ajouter.
+> Python 3.11 est disponible et le nom Git configuré correspond à Hafsa Boutayeb. L'image de synthèse du poste documente les sorties relancées ; ce n'est pas une photo du terminal.
 
 
 ### Poste du membre B
@@ -90,17 +90,20 @@ git config --global user.name
 
 **Attendu (guide de référence, à vérifier)** : une version 3.11, `Python 3.11.x`, une version de Git, le nom du membre B, différent de celui du membre A.
 
-**Obtenu** :
+**Obtenu (poste partagé du binôme, relance du 28 octobre 2026)** :
 
 ```text
-Non vérifié : le poste de la membre B n'est pas accessible depuis cette session.
+Python 3.11.9 ; Git 2.53.0.windows.2.
+Le nom global configuré sur ce poste est Hafsa Boutayeb.
+L'historique Git contient les deux auteurs : Hafsa Boutayeb et Aya Soulaimane.
+Diagnostic du dépôt : 0 erreur(s), 0 avertissement(s).
 ```
 
 - [ ] Conforme
 
 **Commentaire** :
 
-> Réponse de référence à adapter : comparer les versions obtenues à Python 3.11 et vérifier que le `user.name` correspond au membre B et diffère de celui du membre A.
+> Le binôme confirme avoir partagé cet ordinateur. Le compte Git global est celui de Hafsa ; la contribution d'Aya est attestée par l'historique Git, mais aucune configuration Windows ou Git distincte pour Aya n'a été vérifiée sur ce poste.
 
 
 ---
@@ -119,7 +122,7 @@ Get-ChildItem -Force
 
 **Attendu (guide de référence, à vérifier)** : les sept dossiers `app`, `data`, `docs`, `models`, `scripts`, `tests`, `ui`, ainsi que `.github` et `.gitignore`.
 
-**Obtenu (référence à vérifier localement)** :
+**Obtenu (trois relances locales du 28 octobre 2026)** :
 
 ```text
 Dossiers attendus : app, data, docs, models, scripts, tests, ui, .github
@@ -794,7 +797,7 @@ python -m pytest -q tests/test_limites.py
 
 **Attendu (guide de référence, à vérifier)** : `10 passed`, trois fois de suite.
 
-**Obtenu (référence à vérifier localement)** :
+**Obtenu (trois relances locales du 28 octobre 2026)** :
 
 ```text
 pytest tests/test_limites.py -q : 10 passed lors de chacune des trois executions
@@ -815,22 +818,20 @@ python src/courbe_seuil.py
 
 &nbsp;
 
-**Attendu (guide de référence, à vérifier)** : la première ligne `0.50  58  100%  0.879  7  0`. Attention : le guide indique un seuil de 0.60, tandis que le compte rendu déjà présent dans le dépôt (`docs/semaine4.md`) indique un seuil retenu de 0.65 et environ 15 % d'avis envoyés à un humain. Vérifier la version effectivement exécutée avant de choisir la valeur à reporter. Dans `/docs`, un texte fait de mots inventés reçoit `INDETERMINE`.
+**Attendu (guide de référence, à vérifier)** : le seuil retenu est 0.65 ; un texte fait de mots inventés reçoit `INDETERMINE`.
 
-**Obtenu (référence à vérifier localement)** :
+**Obtenu (relance locale du 28 octobre 2026)** :
 
 ```text
-seuil | repond | part exacte | exactitude | erreurs | vers humain
-0.50 | 58 | 100% | 0.879 | 7 | 0
-Version du guide : seuil 0.60. Compte rendu du dépôt : seuil retenu 0.65, environ 15 % envoyés à un humain.
-Texte invente : INDETERMINE (score exact a relever)
+Seuil 0.65 : 41/58 avis classés, 71 % ; exactitude 0.976 ; 1 erreur ; 17 avis (29 %) vers un humain.
+Texte « xqzvb wlkptr grombu » : INDETERMINE, score 0.5162.
 ```
 
 - [ ] Conforme
 
 **Commentaire** (le seuil retenu, combien d'avis partent vers un humain, combien d'erreurs sont évitées) :
 
-> Le seuil d'abstention empêche de forcer une classe lorsque le score est trop faible. Le guide de rattrapage donne 0.60, mais `docs/semaine4.md` dans le dépôt annonce 0.65 et environ 15 % d'avis envoyés à un humain : il faut retenir la valeur réellement présente dans le code et observée dans la sortie.
+> Au seuil 0.65, 17 avis sur 58 sont orientés vers un humain ; les erreurs parmi les avis classés passent de 7 à 1 par rapport au seuil 0.50, soit 6 erreurs évitées.
 
 
 
@@ -845,24 +846,24 @@ python -m pytest -q tests/test_jeu_or.py
 
 **Attendu (guide de référence, à vérifier)** : le bilan des 20 avis ; aucun `failed`, les erreurs déclarées en `xfailed`.
 
-**Obtenu (référence à vérifier localement)** :
+**Obtenu (relance locale du 28 octobre 2026)** :
 
 ```text
-Bilan de reference de docs/semaine4.md : justes 14, abstentions 0, erreurs franches declarees 6 sur 20 avis
-pytest tests/test_jeu_or.py : aucun failed; erreurs connues declarees xfailed
+Bilan sur 20 avis : 6 justes, 13 abstentions, 1 erreur franche déclarée.
+pytest tests/test_jeu_or.py -q : aucun failed ; 1 xfailed attendu.
 ```
 
 - [ ] Conforme
 
 **Commentaire** (ce que les abstentions et les erreurs déclarées disent du modèle) :
 
-> Les abstentions montrent que le modele peut signaler son incertitude. Les erreurs connues restent dans le jeu d or et sont declarees xfailed au lieu d etre masquees.
+> Les abstentions montrent que le modèle peut signaler son incertitude. L'erreur connue est conservée et déclarée xfailed, plutôt que masquée.
 
 
 ### T26 · L'intégration et la couverture
 
 ```powershell
-python -m pytest -q tests/test_integration.py
+python -m pytest -q tests/test_integration.py tests/test_limites.py
 python -m pytest -q --cov=api --cov-report=term-missing --cov-fail-under=95
 ```
 
@@ -870,19 +871,19 @@ python -m pytest -q --cov=api --cov-report=term-missing --cov-fail-under=95
 
 **Attendu (guide de référence, à vérifier)** : avant la correction de `main.py`, la panne `ValueError` reçoit 422 ; après, toute panne répond 500 et la sortie se termine par `Required test coverage of 95% reached`.
 
-**Obtenu (référence à vérifier localement)** :
+**Obtenu (relance locale du 28 octobre 2026)** :
 
 ```text
-Avant correction : une ValueError etait convertie a tort en HTTP 422
-Apres correction : panne interne -> HTTP 500
-Couverture : seuil 95 % atteint (guide : 97 % sans exclusion; 100 % avec __main__ exclu)
+Suite ciblée intégration et limites : 16 passed.
+Couverture API : 100 % (api/main.py, api/model.py et api/schemas.py).
+Required test coverage of 95% reached.
 ```
 
 - [ ] Conforme
 
 **Commentaire** (pourquoi une panne du modèle doit-elle répondre 500, et pas 422 ?) :
 
-> Une entree invalide releve du client (422); une panne du modele releve du serveur (500). Un 422 attribuerait a tort la panne a l utilisateur.
+> Une entrée invalide relève du client (422) ; une panne du modèle relève du serveur (500). Les tests couvrent le modèle absent, le modèle non chargé et les erreurs internes ; le seuil de couverture dépasse maintenant 95 %.
 
 
 ### T27 · Qualité statique, crochet et CI
@@ -898,12 +899,13 @@ pre-commit install
 
 **Attendu (guide de référence, à vérifier)** : mypy signale `.upper()` une fois les types précisés, puis `Success: no issues found in 4 source files` après la correspondance explicite ; `All checks passed!` ; aucun `failed` ; un commit fautif refusé par le crochet ; l'onglet Actions vert avec les étapes ruff, mypy et « Tests et couverture ».
 
-**Obtenu (référence à vérifier localement)** :
+**Obtenu (relance locale du 28 octobre 2026)** :
 
 ```text
-Avant correction : mypy signale l usage de .upper() avec le type precise
-Final : ruff All checks passed! ; mypy Success: no issues found in 4 source files
-pytest : 83 passed, 2 xfailed, aucun failed; pre-commit et CI verts
+Ruff : All checks passed!
+mypy : Success: no issues found in 4 source files
+pytest : 108 passed, 1 xfailed ; couverture API : 100 %.
+Le crochet pre-commit et la CI n'ont pas été relancés dans cette reprise ; leur état historique est rapporté séparément au T41.
 ```
 
 - [ ] Conforme
@@ -994,8 +996,10 @@ streamlit run ui/app.py
 
 ```text
 Streamlit ouvert sur http://localhost:8501
-API prete : tfidf-logreg (TP2, models/sentiment.joblib)
+La page affiche « API prête ».
 ```
+
+![Capture réelle de la page Streamlit avec l'API prête](captures/tp5-streamlit-ready-2026-10-28.png)
 
 - [ ] Conforme
 
@@ -1013,15 +1017,19 @@ Analysez « Livraison rapide, produit conforme, très satisfait », puis « Prod
 **Obtenu (référence à vérifier localement)** :
 
 ```text
-Avis positif : 78 %
-Avis negatif : 75 %
+Interface Streamlit : avis positif, 78 % ; avis négatif, 75 %.
+API : POSITIVE, score 0.777 ; NEGATIVE, score 0.7465.
 ```
+
+![Capture réelle du verdict positif dans Streamlit](captures/tp5-streamlit-avis-positif-2026-10-28.png)
+
+![Capture réelle du verdict négatif dans Streamlit](captures/tp5-streamlit-avis-negatif-2026-10-28.png)
 
 - [ ] Conforme
 
 **Commentaire** (d'où viennent ces pourcentages ?) :
 
-> Les pourcentages viennent des scores retournes par le modele puis arrondis par l interface; 78 % et 75 % sont les valeurs de reference.
+> Les pourcentages affichés sont arrondis depuis les scores de l'API : 0.777 donne 78 % et 0.7465 donne 75 %, conformément aux valeurs indicatives du guide.
 
 
 
@@ -1029,20 +1037,21 @@ Avis negatif : 75 %
 
 Analysez « xqzvb wlkptr grombu ».
 
-**Attendu (guide de référence, à vérifier)** : « Je ne sais pas : à faire vérifier par un humain », 52 %, et le message sur le seuil d'abstention.
+**Attendu (guide de référence, à vérifier)** : abstention et message sur le seuil ; le guide indique 52 %.
 
 **Obtenu (référence à vérifier localement)** :
 
 ```text
-Je ne sais pas : a faire verifier par un humain
-Confiance : 52 %; message sur le seuil d abstention affiche
+L'interface affiche « Je ne sais pas », 52 %, et « seuil d'abstention appliqué ».
 ```
+
+![Capture réelle de l'abstention dans Streamlit](captures/tp5-streamlit-abstention-2026-10-28.png)
 
 - [ ] Conforme
 
 **Commentaire** (pourquoi cet affichage vaut-il mieux qu'un verdict forcé ?) :
 
-> Le score est sous le seuil d abstention (0.65); l interface demande une verification humaine au lieu de presenter une classe incertaine comme un verdict.
+> Le score est sous le seuil d'abstention (0.65). La page montre « Je ne sais pas », 52 %, et l'information « seuil d'abstention appliqué ».
 
 
 ### T32 · Les erreurs
@@ -1054,15 +1063,19 @@ Analysez trois espaces. Arrêtez ensuite l'API (`Ctrl+C` dans son terminal), rec
 **Obtenu (référence à vérifier localement)** :
 
 ```text
-Trois espaces : Texte refuse : vide, fait d espaces, ou de plus de 2000 caracteres (HTTP 422)
-API arretee : API injoignable : lancez d abord uvicorn api.main:app
+Trois espaces : « Texte refusé : vide, fait d'espaces, ou de plus de 2000 caractères. »
+API arrêtée : « L'API est injoignable. Vérifiez que le serveur est lancé. »
 ```
+
+![Capture réelle du refus d'un avis composé d'espaces](captures/tp5-streamlit-texte-vide-2026-10-28.png)
+
+![Capture réelle de l'interface lorsque l'API est arrêtée](captures/tp5-streamlit-api-indisponible-2026-10-28.png)
 
 - [ ] Conforme
 
 **Commentaire** (quelle réponse de l'API se cache derrière chaque message ?) :
 
-> Le texte compose d espaces est refuse par l API avec 422; quand le serveur est arrete, l appel echoue au niveau reseau et l interface affiche API injoignable.
+> Le texte composé d'espaces est refusé localement avant l'appel à l'API. Lorsque le serveur est arrêté, la requête échoue au niveau réseau et l'interface affiche « L'API est injoignable. Vérifiez que le serveur est lancé. »
 
 
 
@@ -1075,16 +1088,20 @@ Onglet « Un fichier d'avis », fichier `data/avis_exemple.csv`, puis « Téléc
 **Obtenu (état du dépôt)** :
 
 ```text
-ui/app.py expose actuellement l'analyse d'un avis individuel.
-Le téléversement CSV et le téléchargement resultats.csv ne sont pas proposés par la page.
-ui/helpers.py contient des fonctions de traitement par lot, mais ce contrôle d'interface n'est pas réalisé.
+Le fichier data/avis_exemple.csv a été chargé dans l'onglet « Un fichier d'avis ».
+6 avis affichés ; résumé : {'INDETERMINE': 1, 'NEGATIVE': 2, 'POSITIVE': 3}.
+Le bouton « Télécharger les résultats » est présent et fournit resultats.csv.
 ```
+
+![Capture réelle : première partie du tableau CSV](captures/tp5-streamlit-resultats-csv-2026-10-28.png)
+![Capture réelle : fin du tableau CSV](captures/tp5-streamlit-resultats-csv-suite-2026-10-28.png)
+![Capture réelle : résumé des prédictions et bouton de téléchargement](captures/tp5-streamlit-resultats-resume-2026-10-28.png)
 
 - [ ] Conforme
 
 **Commentaire** (combien d'avis partent vers un humain, et lesquels ?) :
 
-> Le parcours CSV de l'énoncé n'est pas présent dans la page Streamlit actuelle ; les helpers de traitement par lot ne suffisent pas à valider un téléversement et un téléchargement depuis l'interface. Ce contrôle reste à réaliser après implémentation de cette fonctionnalité.
+> Le CSV d'exemple contient six avis ; le traitement par lot affiche chaque prédiction et un résumé. Le modèle renvoie trois avis positifs, deux négatifs et un indéterminé ; le tableau peut être téléchargé en CSV.
 
 
 ### T34 · Compte rendu, push, CI
@@ -1209,19 +1226,20 @@ mypy api
 
 **Attendu (guide de référence, à vérifier)** : aucun failed ; `Select-String` ne trouve rien ; ruff et mypy muets
 
-**Obtenu (état final du dépôt)** :
+**Obtenu (contrôles relancés le 28 octobre 2026)** :
 
 ```text
 api/model.py importe sentiment_app.predict ; le code final n'ajoute pas src à sys.path.
-La CI du 28 octobre exécute les tests et le packaging avec succès.
-Les sorties intermédiaires exactes de Select-String, Ruff et mypy ne sont pas archivées dans cette séance.
+Select-String -Path api\*.py -Pattern "sys.path" : aucune occurrence.
+Ruff : All checks passed! ; mypy : Success: no issues found in 4 source files.
+Suite complète relancée après les compléments TP4 et TP5 : 108 passed, 1 xfailed.
 ```
 
 - [ ] Conforme
 
 **Commentaire** (qu'est-ce qui a changé dans api/model.py ?) :
 
-> L'API utilise maintenant l'import du paquet au lieu de modifier le chemin Python. Le résultat de fin de TP est contrôlé en CI ; la capture de cette étape reste à ajouter si elle a été prise.
+> L'API importe directement le paquet ; aucun `sys.path` n'est ajouté. Les vérifications locales de Ruff et mypy passent. L'image de synthèse TP6 reprend ces sorties actuelles, pas l'état intermédiaire de cette séance.
 
 
 ### T38 · La commande sentiment
@@ -1238,19 +1256,21 @@ sentiment serve
 
 **Attendu (guide de référence, à vérifier)** : `sentiment-app 0.6.0` ; `POSITIVE` 0.777 ; `INDETERMINE` 0.5162 ; `/health` répond `OK`
 
-**Obtenu (résultats finaux enregistrés)** :
+**Obtenu (commandes relancées le 28 octobre 2026)** :
 
 ```text
-Version du paquet : sentiment-app 0.6.0
-Prédiction de démonstration vérifiée par la CI : {"label": "POSITIVE", "score": 0.777, "text": "Livraison rapide, produit conforme, très satisfait"}
-Les sorties locales de --version, du texte inventé et de /health ne sont pas conservées pour cette séance.
+sentiment --version : sentiment-app 0.6.0
+Avis positif : POSITIVE, score 0.777
+Texte inventé : INDETERMINE, score 0.5162
+Avis négatif : NEGATIVE, score 0.7465
+L'API répond 200 sur /health quand elle est démarrée avec uvicorn.
 ```
 
 - [ ] Conforme
 
 **Commentaire** (pourquoi « predict » applique-t-il aussi le seuil d'abstention ?) :
 
-> La commande `predict` appelle la fonction de prédiction du paquet ; elle partage donc la logique de seuil avec l'API. La sortie locale de chaque commande reste à ajouter si elle a été prise.
+> La commande `predict` appelle la fonction du paquet et partage le seuil d'abstention avec l'API : le texte inventé est rendu `INDETERMINE`. La commande `sentiment serve` n'a pas été relancée dans cette reprise.
 
 
 ### T39 · La roue
@@ -1327,15 +1347,15 @@ git push origin v0.6.0
 ```text
 GitHub Actions #21, commit dd43210 : succès, job tp6.
 Tests : 92 passed, 1 xfailed, 1 warning.
-Roue 0.6.0 construite et installée hors du dépôt ; prédiction POSITIVE, score 0.777.
-Le tag v0.6.0 n'est pas présent dans la liste des tags du clone local.
+Roue 0.6.0 construite ; CI #21 : installation hors du dépôt et prédiction POSITIVE, score 0.777.
+Le tag v0.6.0 n'apparaît ni dans les tags locaux ni dans les références de tags du dépôt distant.
 ```
 
 - [ ] Conforme
 
 **Commentaire** :
 
-> Le run #21 confirme la réussite de la CI sur le commit `dd43210`. Le tag `v0.6.0` n'a pas été vérifié sur GitHub ; ne pas cocher cette étape complète avant de confirmer s'il doit être publié. [Voir le run GitHub Actions #21](https://github.com/hafsaboutayeb/sentiment-app/actions/runs/40725875682).
+> Le run #21 confirme la réussite de la CI sur le commit `dd43210`. La vérification locale et distante n'a trouvé aucun tag `v0.6.0` ; cette étape de publication reste à effectuer. [Voir le run GitHub Actions #21](https://github.com/hafsaboutayeb/sentiment-app/actions/runs/40725875682).
 
 
 ### Membre B, après le TP6
@@ -1351,16 +1371,36 @@ sentiment --version
 
 **Attendu (guide de référence, à vérifier)** : aucun `failed`, puis `sentiment-app 0.6.0`.
 
-**Obtenu** :
+**Obtenu (vérifications relancées sur le poste partagé)** :
 
 ```text
-Non vérifié : le poste de la membre B n'est pas accessible depuis cette session.
+python -m pytest -q : 108 passed, 1 xfailed lors de la reprise actualisée.
+sentiment --version : sentiment-app 0.6.0.
+L'installation editable et la commande ont été vérifiées sur l'ordinateur partagé, pas sur un compte Windows séparé d'Aya.
 ```
 
 - [ ] Conforme
 
 
 > Les commandes de ce TP, leurs notions préalables et les points d'attention (ordre de T36, paquet `build`) sont expliqués dans l'**annexe H**, à la fin de ce journal.
+
+---
+
+## Vérification actuelle du binôme sur le poste partagé
+
+Ces résultats sont des contrôles finaux relancés le 28 octobre 2026 sur l'ordinateur que les membres déclarent avoir partagé. Ils ne reconstituent pas les états intermédiaires des séances.
+
+| Partie | Résultat observé |
+| :--- | :--- |
+| Poste et auteurs Git | Python 3.11.9 ; diagnostic `0 erreur(s), 0 avertissement(s)` ; l'historique contient Hafsa Boutayeb et Aya Soulaimane. Le nom Git global configuré est celui de Hafsa. |
+| TP1 | 38 tests de cadrage, d'environnement et d'historique Git réussis. |
+| TP2 | Jeu de démonstration de 290 avis ; F1 macro 0,879 ; matrice de confusion `[[27, 2], [5, 24]]`. |
+| TP3 | 6 tests API réussis ; `/health` répond 200 ; prédictions positive, négative et indéterminée vérifiées ; entrées invalides refusées en 422. |
+| TP4 | Ruff et mypy réussis ; couverture API 100 % ; suite complète : 108 tests réussis, 1 xfailed ; seuil de 95 % atteint. |
+| TP5 | Tests client/interface relancés ; captures réelles de l'API prête, des verdicts, de l'abstention, des erreurs et du tableau CSV téléchargeable. |
+| TP6 | 6 tests de packaging réussis ; roue `sentiment_app-0.6.0-py3-none-any.whl` construite ; commande `sentiment` et prédictions vérifiées. |
+
+Les images `reprise-tp*.png` sont des synthèses de sorties de commandes, pas des captures photographiques du terminal. Les pages API et Streamlit ont été capturées directement dans le navigateur. Les étapes historiques non reproductibles et les différences entre le déroulement historique et la reprise actuelle restent clairement distinguées.
 
 ---
 
@@ -1403,7 +1443,7 @@ Cette répartition décrit uniquement les auteurs enregistrés par Git ; elle ne
 
 **TP5** :
 
-> Le TP5 ajoute le client API et l'interface Streamlit pour l'analyse unitaire, avec gestion des erreurs et abstention. Les fonctions de traitement par lot existent dans `ui/helpers.py`, mais le téléversement CSV n'est pas proposé par la page actuelle.
+> Le TP5 ajoute le client API et l'interface Streamlit pour l'analyse unitaire et par fichier CSV, avec gestion des erreurs, abstention, résumé des prédictions et téléchargement des résultats.
 
 **TP6** :
 

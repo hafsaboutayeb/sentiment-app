@@ -42,12 +42,21 @@ def test_page_annonce_api_prete(page):
 
 
 def test_avis_positif(page):
-    assert analyser(page, "Livraison rapide, produit conforme, très satisfait").metric[0].label == "Avis positif"
+    metric = analyser(page, "Livraison rapide, produit conforme, très satisfait").metric[0]
+    assert metric.label == "Avis positif"
+    assert metric.value == "78 %"
+
+
+def test_avis_negatif(page):
+    metric = analyser(page, "Produit cassé et service injoignable, à fuir").metric[0]
+    assert metric.label == "Avis négatif"
+    assert metric.value == "75 %"
 
 
 def test_texte_inconnu_je_ne_sais_pas(page):
     resultat = analyser(page, "xqzvb wlkptr grombu")
     assert resultat.metric[0].label.startswith("Je ne sais pas")
+    assert resultat.metric[0].value == "52 %"
     assert "seuil d'abstention" in resultat.info[0].value
 
 

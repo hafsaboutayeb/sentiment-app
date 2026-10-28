@@ -5,6 +5,7 @@ Séparées de app.py pour être testables sans lancer Streamlit.
 from __future__ import annotations
 
 import sys
+from functools import partial
 from pathlib import Path
 
 import pandas as pd
@@ -22,7 +23,7 @@ def charger_predicteur():
         )
     sys.path.insert(0, str(RACINE / "src"))
     from predict import predict  # noqa: E402  (import tardif : le modèle doit exister)
-    return predict
+    return partial(predict, seuil=SEUIL_INCERTITUDE)
 
 
 def classer(texte: str, predicteur) -> dict:
@@ -50,6 +51,21 @@ def predire_lot(df: pd.DataFrame, predicteur, colonne: str = "review") -> pd.Dat
     return sortie
 
 
+def analyser_fichier(
+    df: pd.DataFrame, predicteur, colonne: str | None = None
+) -> tuple[pd.DataFrame, dict[str, int]]:
+    """Prédit chaque avis exploitable et compte les trois étiquettes du contrat."""
+    if colonne is None:
+        colonne = "review" if "review" in df.columns else "text"
+    resultat = predire_lot(df, predicteur, colonne)
+    etiquettes = resultat["prediction"].astype(str).str.upper()
+    resume = {
+        etiquette: int((etiquettes == etiquette).sum())
+        for etiquette in ("INDETERMINE", "NEGATIVE", "POSITIVE")
+    }
+    return resultat, resume
+
+
 def resumer(df: pd.DataFrame) -> dict:
     """Les trois chiffres que l'équipe relation client regarde en premier."""
     negatifs = int((df["prediction"] == "negative").sum())
@@ -61,5 +77,3 @@ def resumer(df: pd.DataFrame) -> dict:
         "a_verifier": a_verifier,
         "confiance_moyenne": round(float(df["confiance"].mean()), 3) if len(df) else 0.0,
     }
-
-

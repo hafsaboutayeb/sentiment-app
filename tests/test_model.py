@@ -50,6 +50,12 @@ def test_prediction_evidente(predicteur):
     assert predicteur("Produit cassé et service client injoignable")["label"] == "negative"
 
 
+def test_seuil_de_confiance_est_configurable(predicteur):
+    texte = "Pas déçu du tout, je recommande"
+    assert predicteur(texte)["label"] == "indetermine"
+    assert predicteur(texte, seuil=0.60)["label"] == "positive"
+
+
 def test_format_de_sortie(predicteur):
     sortie = predicteur("Conforme à la description")
     # inclusion et non égalité : predict() peut renvoyer des champs supplémentaires

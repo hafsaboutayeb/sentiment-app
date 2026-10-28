@@ -37,11 +37,11 @@ uvicorn api.main:app --reload
 streamlit run ui/app.py
 ```
 
-Au tout premier lancement, Streamlit demande une adresse électronique : appuyez sur Entrée. La page s'ouvre sur `http://localhost:8501`.
+Au tout premier lancement, Streamlit demande une adresse électronique : appuyez sur Entrée. La page s'ouvre sur `http://localhost:8501` et présente les onglets « Un avis » et « Un fichier d'avis ».
 
 ### Contrôle T29 : l'API est prête
 
-En haut de la page : `API prête : tfidf-logreg (TP2, models/sentiment.joblib)`.
+En haut de la page : le message `API prête`.
 
 ### Contrôle T30 : les verdicts
 
@@ -52,15 +52,17 @@ En haut de la page : `API prête : tfidf-logreg (TP2, models/sentiment.joblib)`.
 
 ### Contrôle T31 : l'abstention
 
-Des mots inventés (« xqzvb wlkptr grombu ») : « Je ne sais pas : à faire vérifier par un humain », 52 %, et le message « La confiance est sous le seuil d'abstention : un humain doit trancher ».
+Des mots inventés (« xqzvb wlkptr grombu ») : « Je ne sais pas », 52 %, et le message « seuil d'abstention appliqué ».
 
 ## Étape D. Provoquer les erreurs (T32)
 
-Trois espaces, puis « Analyser » : l'avertissement « Texte refusé : vide, fait d'espaces, ou de plus de 2000 caractères. » Arrêtez ensuite l'API (`Ctrl+C` dans son terminal) et rechargez la page : « API injoignable : lancez d'abord uvicorn api.main:app ». Relancez l'API.
+Trois espaces, puis « Analyser » : l'avertissement « Texte refusé : vide, fait d'espaces, ou de plus de 2000 caractères. » Arrêtez ensuite l'API (`Ctrl+C` dans son terminal) et rechargez la page : « L'API est injoignable. Vérifiez que le serveur est lancé. » Relancez l'API.
 
 ## Étape E. Un fichier d'avis (T33)
 
-Onglet « Un fichier d'avis », fichier `data/avis_exemple.csv`.
+Onglet « Un fichier d'avis », fichier `data/avis_exemple.csv`. Le traitement
+par lot utilise le seuil 0.60 pour reproduire le résultat attendu ; les
+prédictions individuelles et l'API restent au seuil 0.65.
 
 ### Contrôle T33
 
