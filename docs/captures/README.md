@@ -1,7 +1,7 @@
-# Captures du journal TP1-TP6
+# Captures et preuves du journal TP1-TP6
 
-Le journal contient 53 emplacements de captures. Enregistrez chaque image PNG dans ce dossier avec le nom exact indiqué sous son contrôle dans `../journal-tp1-tp6.md`.
+Les fichiers `reprise-tp*.png` sont des images produites automatiquement à partir des sorties exactes de contrôles relancés le 28 octobre 2026 dans un worktree temporaire. Elles documentent l'état actuel du dépôt et ne prétendent pas reproduire les écrans des séances historiques.
 
-Les captures doivent montrer les commandes et résultats réellement obtenus, ou l'écran GitHub correspondant. Ne recréez pas une ancienne sortie sous forme d'image et ne cochez pas un contrôle sans l'avoir vérifié. Les captures des postes d'Aya doivent être prises sur son propre ordinateur.
+`tp3-fastapi-docs-2026-10-28.png` est une véritable capture de la page Swagger de l'API démarrée localement. Les tests de l'interface Streamlit ont été relancés, mais aucune capture valide de cette page n'est incluse.
 
-Sous Windows, utilisez `Windows + Maj + S`, puis enregistrez la zone utile directement dans ce dossier. Masquez les mots de passe, jetons et fichiers `.env`.
+Les captures originales des 53 étapes ne figuraient pas dans le dépôt. Il n'est pas possible de reconstituer les anciens écrans, l'état intermédiaire avant les corrections, ni le poste d'Aya. Pour compléter ces preuves, reprenez réellement les commandes sur le poste concerné et enregistrez l'écran avec `Windows + Maj + S`. Ne présentez pas une réexécution actuelle comme une image historique et masquez les secrets avant de partager une image.
