@@ -1226,7 +1226,7 @@ mypy api
 
 **Attendu (guide de référence, à vérifier)** : aucun failed ; `Select-String` ne trouve rien ; ruff et mypy muets
 
-**Obtenu (contrôles relancés le 28 octobre 2026)** :
+**Obtenu (contrôles relancés le 4 novembre 2026)** :
 
 ```text
 api/model.py importe sentiment_app.predict ; le code final n'ajoute pas src à sys.path.
@@ -1235,7 +1235,7 @@ Ruff : All checks passed! ; mypy : Success: no issues found in 4 source files.
 Suite complète relancée après les compléments TP4 et TP5 : 108 passed, 1 xfailed.
 ```
 
-- [ ] Conforme
+- [x] Conforme
 
 **Commentaire** (qu'est-ce qui a changé dans api/model.py ?) :
 
@@ -1256,21 +1256,21 @@ sentiment serve
 
 **Attendu (guide de référence, à vérifier)** : `sentiment-app 0.6.0` ; `POSITIVE` 0.777 ; `INDETERMINE` 0.5162 ; `/health` répond `OK`
 
-**Obtenu (commandes relancées le 28 octobre 2026)** :
+**Obtenu (contrôles relancés le 4 novembre 2026)** :
 
 ```text
 sentiment --version : sentiment-app 0.6.0
 Avis positif : POSITIVE, score 0.777
 Texte inventé : INDETERMINE, score 0.5162
 Avis négatif : NEGATIVE, score 0.7465
-L'API répond 200 sur /health quand elle est démarrée avec uvicorn.
+`sentiment serve --port 8765` démarre l'API ; `/health` répond `{"status":"OK","model":"tfidf-logreg (TP2, models/sentiment.joblib)"}`.
 ```
 
-- [ ] Conforme
+- [x] Conforme
 
 **Commentaire** (pourquoi « predict » applique-t-il aussi le seuil d'abstention ?) :
 
-> La commande `predict` appelle la fonction du paquet et partage le seuil d'abstention avec l'API : le texte inventé est rendu `INDETERMINE`. La commande `sentiment serve` n'a pas été relancée dans cette reprise.
+> La commande `predict` appelle la fonction du paquet et partage le seuil d'abstention avec l'API : le texte inventé est rendu `INDETERMINE`. `sentiment serve` démarre l'API et le point `/health` répond `OK`.
 
 
 ### T39 · La roue
@@ -1284,14 +1284,14 @@ python -m build --wheel
 
 **Attendu (guide de référence, à vérifier)** : `sentiment_app-0.6.0-py3-none-any.whl`, avec `api`, `sentiment_app`, `ui` seulement
 
-**Obtenu (CI du 28 octobre 2026)** :
+**Obtenu (roue reconstruite et inspectée le 4 novembre 2026)** :
 
 ```text
 Successfully built sentiment_app-0.6.0-py3-none-any.whl
-La roue a ensuite été installée dans un environnement séparé du dépôt.
+La roue contient api, sentiment_app, ui et ses métadonnées ; elle ne contient ni tests, ni data, ni models, ni src.
 ```
 
-- [ ] Conforme
+- [x] Conforme
 
 **Commentaire** (pourquoi ni tests, ni données, ni modèle ?) :
 
@@ -1313,19 +1313,21 @@ roue-tp6\Scripts\sentiment predict "Livraison rapide, produit conforme, très sa
 
 **Attendu (guide de référence, à vérifier)** : sans la variable : « modèle introuvable », code 1 ; avec : `POSITIVE` 0.777
 
-**Obtenu (CI du 28 octobre 2026)** :
+**Obtenu (contrôle relancé le 4 novembre 2026)** :
 
 ```text
-La CI installe la roue hors du dépôt et utilise SENTIMENT_MODELE vers le modèle généré.
-Résultat : {"label": "POSITIVE", "score": 0.777, "text": "Livraison rapide, produit conforme, très satisfait"}
-Le test local sans SENTIMENT_MODELE n'est pas conservé dans les preuves de cette séance.
+Depuis le dossier temporaire, la roue installée prédit sans SENTIMENT_MODELE :
+« Modèle introuvable », code de sortie 1.
+Avec SENTIMENT_MODELE pointant vers models/sentiment.joblib :
+{"label": "POSITIVE", "score": 0.777, "text": "Livraison rapide, produit conforme, très satisfait"}
+La CI installe également la roue et vérifie cette prédiction hors du dépôt.
 ```
 
-- [ ] Conforme
+- [x] Conforme
 
 **Commentaire** (qu'a-t-il fallu fournir à la roue, et qu'a-t-elle installé seule ?) :
 
-> Le modèle est fourni au déploiement via `SENTIMENT_MODELE`, et non embarqué dans la roue. La CI valide l'installation et la prédiction depuis un environnement distinct du dépôt.
+> Le modèle doit être fourni au déploiement via `SENTIMENT_MODELE` ; il n'est pas embarqué dans la roue. `pip` installe la roue et ses dépendances, et la CI confirme la prédiction depuis un environnement distinct du dépôt.
 
 
 ### T41 · Version, étiquette, push
@@ -1342,20 +1344,20 @@ git push origin v0.6.0
 
 **Attendu (guide de référence, à vérifier)** : CI verte, étape « Roue installée hors du dépôt (TP6) » comprise ; l'étiquette `v0.6.0` visible sur GitHub
 
-**Obtenu (vérifié)** :
+**Obtenu (vérifié le 4 novembre 2026)** :
 
 ```text
-GitHub Actions #21, commit dd43210 : succès, job tp6.
-Tests : 92 passed, 1 xfailed, 1 warning.
-Roue 0.6.0 construite ; CI #21 : installation hors du dépôt et prédiction POSITIVE, score 0.777.
-Le tag v0.6.0 n'apparaît ni dans les tags locaux ni dans les références de tags du dépôt distant.
+Commit 57fd796 poussé sur main ; tag annoté v0.6.0 poussé sur origin.
+GitHub Actions #25 : succès, y compris « Roue installée hors du dépôt (TP6) ».
+Vérifications locales : 108 passed, 1 xfailed ; roue 0.6.0 construite.
+La CI installe la roue hors du dépôt et produit POSITIVE, score 0.777.
 ```
 
-- [ ] Conforme
+- [x] Conforme
 
 **Commentaire** :
 
-> Le run #21 confirme la réussite de la CI sur le commit `dd43210`. La vérification locale et distante n'a trouvé aucun tag `v0.6.0` ; cette étape de publication reste à effectuer. [Voir le run GitHub Actions #21](https://github.com/hafsaboutayeb/sentiment-app/actions/runs/40725875682).
+> Le run #25 confirme la réussite de la CI après correction de sa dépendance manquante `hypothesis`. Le tag `v0.6.0` est maintenant publié et pointe vers le commit `57fd796`. [Voir le run GitHub Actions #25](https://github.com/hafsaboutayeb/sentiment-app/actions/runs/41817319682).
 
 
 ### Membre B, après le TP6
@@ -1447,7 +1449,7 @@ Cette répartition décrit uniquement les auteurs enregistrés par Git ; elle ne
 
 **TP6** :
 
-> Le TP6 transforme le projet en paquet Python installable `0.6.0`, fournit la commande `sentiment` et permet de configurer le chemin du modèle. La CI #21 a construit puis installé la roue hors du dépôt, exécuté les tests (92 passed, 1 xfailed) et obtenu une prédiction POSITIVE. Les captures historiques et la présence du tag `v0.6.0` sur GitHub restent à vérifier.
+> Le TP6 transforme le projet en paquet Python installable `0.6.0`, fournit la commande `sentiment` et permet de configurer le chemin du modèle. Les contrôles locaux retrouvent les scores de référence, la roue exclut tests, données et modèle, et l'installation hors du dépôt signale le modèle absent puis réussit avec `SENTIMENT_MODELE`. La CI #25 est verte et le tag `v0.6.0` est publié. Les captures des contrôles intermédiaires T35 et T36 n'ont pas été conservées.
 
 ---
 
